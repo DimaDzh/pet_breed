@@ -47,18 +47,18 @@ export async function generateStaticParams() {
 
 interface BreedLayoutProps {
   children: React.ReactNode;
-  params: {
+  params: Promise<{
     breedType: "dogs" | "cats";
     id: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: { breedType: "dogs" | "cats"; id: string };
+  params: Promise<{ breedType: "dogs" | "cats"; id: string }>;
 }): Promise<Metadata> {
-  const { breedType, id } = params;
+  const { breedType, id } = await params;
   const baseURL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
   try {
     let breed;
@@ -142,7 +142,7 @@ export default async function BreedLayout({
   children,
   params,
 }: BreedLayoutProps) {
-  const { breedType, id } = params;
+  const { breedType, id } = await params;
 
   if (breedType !== "dogs" && breedType !== "cats") {
     notFound();

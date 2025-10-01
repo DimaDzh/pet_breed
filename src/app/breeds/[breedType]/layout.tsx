@@ -9,9 +9,9 @@ import { fetchDogBreeds, fetchCatBreeds } from "@/lib/api";
 
 interface BreedTypeLayoutProps {
   children: React.ReactNode;
-  params: {
+  params: Promise<{
     breedType: string;
-  };
+  }>;
 }
 
 // Generate static params for breed types
@@ -23,9 +23,9 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { breedType: string };
+  params: Promise<{ breedType: string }>;
 }): Promise<Metadata> {
-  const { breedType } = params;
+  const { breedType } = await params;
   const baseURL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
   // Validate breed type
   if (breedType !== "dogs" && breedType !== "cats") {
@@ -75,7 +75,7 @@ export default async function BreedTypeLayout({
   children,
   params,
 }: BreedTypeLayoutProps) {
-  const { breedType } = params;
+  const { breedType } = await params;
 
   if (breedType !== "dogs" && breedType !== "cats") {
     notFound();
