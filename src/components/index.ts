@@ -14,4 +14,5 @@ export { default as BackButton } from "./BackButton";
 export { BreedInfo } from "./BreedInfo";
 export { ImageGallery } from "./ImageGallery";
 export { BreedDetailSkeleton } from "./BreedDetailSkeleton";
+export { SearchComponent } from "./SearchComponent";
 export * from "./icons";

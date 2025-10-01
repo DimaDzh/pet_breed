@@ -1,17 +1,24 @@
 "use client";
 
+import { useState, useCallback } from "react";
 import { useParams } from "next/navigation";
 import ErrorState from "@/components/ErrorState";
 import LoadingSkeleton from "@/components/LoadingSkeleton";
 import BreedGrid from "@/components/BreedGrid";
 import NoResults from "@/components/NoResults";
 import BackButton from "@/components/BackButton";
+import { SearchComponent } from "@/components/SearchComponent";
 import { useQuery } from "@tanstack/react-query";
-import { fetchCatBreeds, fetchDogBreeds } from "@/lib/api";
+import { fetchCatBreeds, fetchDogBreeds, BreedData } from "@/lib/api";
 
 export default function BreedTypePage() {
   const params = useParams();
   const breedType = params.breedType as string;
+  const [filteredBreeds, setFilteredBreeds] = useState<BreedData[]>([]);
+
+  const handleSearchResults = useCallback((results: BreedData[]) => {
+    setFilteredBreeds(results);
+  }, []);
 
   // Validate breed type
   const isValidBreedType = breedType === "dogs" || breedType === "cats";
@@ -58,6 +65,9 @@ export default function BreedTypePage() {
 
   const breedDisplayName = breedType === "dogs" ? "Dogs" : "Cats";
 
+  const displayBreeds =
+    filteredBreeds.length > 0 ? filteredBreeds : breeds || [];
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -71,14 +81,27 @@ export default function BreedTypePage() {
           <LoadingSkeleton count={12} />
         ) : breeds && breeds.length > 0 ? (
           <>
+            {/* Search Section */}
+            <div className="mb-8">
+              <SearchComponent
+                onSearchResults={handleSearchResults}
+                breedType={breedType as "dogs" | "cats"}
+                placeholder={`Search ${breedDisplayName.toLowerCase()}...`}
+                className="max-w-md"
+              />
+            </div>
+
             {/* Stats Bar */}
             <div className="mb-8 flex items-center justify-between">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                All {breedDisplayName} Breeds
+                {filteredBreeds.length > 0
+                  ? "Search Results"
+                  : `All ${breedDisplayName} Breeds`}
               </h2>
               <div className="flex items-center space-x-4">
                 <span className="text-sm text-gray-600 dark:text-gray-400">
-                  Showing {breeds.length} breed{breeds.length !== 1 ? "s" : ""}
+                  Showing {displayBreeds.length} breed
+                  {displayBreeds.length !== 1 ? "s" : ""}
                 </span>
                 <button
                   onClick={() => refetch()}
@@ -102,7 +125,7 @@ export default function BreedTypePage() {
               </div>
             </div>
 
-            <BreedGrid breeds={breeds} />
+            <BreedGrid breeds={displayBreeds} />
           </>
         ) : (
           <NoResults onReset={() => refetch()} />
