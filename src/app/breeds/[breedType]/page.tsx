@@ -1,7 +1,6 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import Navbar from "@/components/Navbar";
 import ErrorState from "@/components/ErrorState";
 import LoadingSkeleton from "@/components/LoadingSkeleton";
 import BreedGrid from "@/components/BreedGrid";
@@ -58,11 +57,6 @@ export default function BreedTypePage() {
   }
 
   const breedDisplayName = breedType === "dogs" ? "Dogs" : "Cats";
-  const breedEmoji = breedType === "dogs" ? "🐶" : "🐱";
-  const gradientColors =
-    breedType === "dogs"
-      ? "from-blue-600 to-indigo-600"
-      : "from-purple-600 to-pink-600";
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">

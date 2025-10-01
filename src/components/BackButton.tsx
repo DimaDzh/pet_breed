@@ -8,7 +8,7 @@ interface BackButtonProps {
 
 const BackButton: React.FC<BackButtonProps> = ({
   label = "Back",
-  className = "inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200",
+  className = "inline-flex items-center cursor-pointer text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200",
 }) => {
   const router = useRouter();
 

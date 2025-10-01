@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BreedImageType } from "@/types";
+import { DogBreed, CatBreed, DisplayBreed } from "@/types";
 
 // Dog API client
 export const dogApiClient = axios.create({
@@ -45,25 +45,8 @@ catApiClient.interceptors.request.use(
   }
 );
 
-// API response types
-export interface DogBreed {
-  id: number;
-  name: string;
-  image?: BreedImageType;
-}
-
-export interface CatBreed {
-  id: string;
-  name: string;
-  image?: BreedImageType;
-}
-
-export interface BreedData {
-  id: string;
-  name: string;
-  image: BreedImageType;
-  breed: "dogs" | "cats";
-}
+// Re-export the simplified breed data type for API usage
+export type BreedData = DisplayBreed;
 
 // Fetch dog breeds with images
 export const fetchDogBreeds = async (
