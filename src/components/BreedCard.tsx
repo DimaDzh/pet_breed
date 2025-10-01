@@ -2,7 +2,7 @@ import { BreedImageType, BreedType } from "@/types";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRightIcon, ImageIcon } from "./icons";
+import { ArrowRightIcon } from "./icons";
 
 type Props = {
   id: string;
@@ -52,21 +52,11 @@ const BreedCard = ({ id, name, image, breed }: Props) => {
           </h3>
 
           <div className="mt-2 flex items-center justify-between">
-            <p className="text-sm text-gray-600 dark:text-gray-400">ID: {id}</p>
-
             {/* View More Arrow */}
             <div className="flex items-center text-sm text-blue-600 dark:text-blue-400 opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1">
               <span className="mr-1">View Details</span>
               <ArrowRightIcon className="h-4 w-4" />
             </div>
-          </div>
-
-          {/* Image Dimensions */}
-          <div className="mt-3 flex items-center space-x-4 text-xs text-gray-500 dark:text-gray-400">
-            <span className="flex items-center">
-              <ImageIcon className="mr-1 h-3 w-3" />
-              {image.width} × {image.height}
-            </span>
           </div>
         </div>
 
