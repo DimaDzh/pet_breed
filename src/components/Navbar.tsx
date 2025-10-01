@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
-    setIsBreedsDropdownOpen(false); // Close breeds dropdown when toggling mobile menu
+    setIsBreedsDropdownOpen(false);
   };
 
   const toggleBreedsDropdown = () => {
@@ -26,7 +26,6 @@ const Navbar = () => {
     setIsBreedsDropdownOpen(false);
   };
 
-  // Close desktop dropdown when clicking outside (mobile handled by Dialog)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
@@ -55,7 +54,6 @@ const Navbar = () => {
             closeBreedsDropdown={closeBreedsDropdown}
           />
 
-          {/* Theme Toggle */}
           <div className="flex items-center">
             <ThemeToggle />
           </div>

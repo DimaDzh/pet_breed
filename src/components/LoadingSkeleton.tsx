@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 
 interface LoadingSkeletonProps {
   count?: number;
 }
 
-const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({ count = 12 }) => {
+const LoadingSkeleton: FC<LoadingSkeletonProps> = ({ count = 12 }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {[...Array(count)].map((_, index) => (

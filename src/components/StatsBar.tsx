@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { FilterType } from "@/types";
 import { RefreshIcon } from "./icons";
 
@@ -8,7 +8,7 @@ interface StatsBarProps {
   onRefresh: () => void;
 }
 
-const StatsBar: React.FC<StatsBarProps> = ({ count, filter, onRefresh }) => {
+const StatsBar: FC<StatsBarProps> = ({ count, filter, onRefresh }) => {
   return (
     <div className="mb-6 flex items-center justify-between">
       <p className="text-gray-600 dark:text-gray-400">

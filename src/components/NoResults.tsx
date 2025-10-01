@@ -5,7 +5,7 @@ interface NoResultsProps {
   onReset: () => void;
 }
 
-const NoResults: React.FC<NoResultsProps> = ({ onReset }) => {
+const NoResults: FC<NoResultsProps> = ({ onReset }) => {
   return (
     <div className="text-center py-12">
       <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center">
