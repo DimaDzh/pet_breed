@@ -48,6 +48,14 @@ catApiClient.interceptors.request.use(
 // Re-export the simplified breed data type for API usage
 export type BreedData = DisplayBreed;
 
+// Image API response interface
+interface ImageApiResponse {
+  id: string;
+  url: string;
+  width: number;
+  height: number;
+}
+
 // Fetch dog breeds with images
 export const fetchDogBreeds = async (
   limit: number = 12
@@ -109,5 +117,63 @@ export const fetchAllBreeds = async (
   } catch (error) {
     console.error("Error fetching all breeds:", error);
     throw new Error("Failed to fetch breeds");
+  }
+};
+
+// Fetch single dog breed by ID
+export const fetchDogBreedById = async (
+  id: string
+): Promise<DogBreed | null> => {
+  try {
+    const response = await dogApiClient.get<DogBreed>(`/breeds/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching dog breed by ID:", error);
+    return null;
+  }
+};
+
+// Fetch single cat breed by ID
+export const fetchCatBreedById = async (
+  id: string
+): Promise<CatBreed | null> => {
+  try {
+    const response = await catApiClient.get<CatBreed>(`/breeds/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching cat breed by ID:", error);
+    return null;
+  }
+};
+
+// Fetch dog images by breed
+export const fetchDogImagesByBreed = async (
+  breedId: string,
+  limit: number = 12
+): Promise<string[]> => {
+  try {
+    const response = await dogApiClient.get<ImageApiResponse[]>(
+      `/images/search?breed_ids=${breedId}&limit=${limit}`
+    );
+    return response.data.map((item) => item.url);
+  } catch (error) {
+    console.error("Error fetching dog images:", error);
+    return [];
+  }
+};
+
+// Fetch cat images by breed
+export const fetchCatImagesByBreed = async (
+  breedId: string,
+  limit: number = 12
+): Promise<string[]> => {
+  try {
+    const response = await catApiClient.get<ImageApiResponse[]>(
+      `/images/search?breed_ids=${breedId}&limit=${limit}`
+    );
+    return response.data.map((item) => item.url);
+  } catch (error) {
+    console.error("Error fetching cat images:", error);
+    return [];
   }
 };

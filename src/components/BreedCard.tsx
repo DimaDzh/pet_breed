@@ -1,4 +1,4 @@
-import { BreedImageType, BreedType } from "@/types";
+import { BreedImage, BreedType } from "@/types";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,7 +7,7 @@ import { ArrowRightIcon } from "./icons";
 type Props = {
   id: string;
   name: string;
-  image: BreedImageType;
+  image: BreedImage;
   breed: BreedType;
 };
 
