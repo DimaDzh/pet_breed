@@ -10,6 +10,7 @@ export { default as NoResults } from "./NoResults";
 export { default as FilterButtons } from "./FilterButtons";
 export { default as BreedCard } from "./BreedCard";
 export { default as ThemeToggle } from "./ThemeToggle";
+export { default as BackButton } from "./BackButton";
 export { BreedInfo } from "./BreedInfo";
 export { ImageGallery } from "./ImageGallery";
 export { BreedDetailSkeleton } from "./BreedDetailSkeleton";
