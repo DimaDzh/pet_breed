@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import ExploreCard from "@/components/ExploreCard";
 import { useExploreImages } from "@/hooks/useExploreImages";
 

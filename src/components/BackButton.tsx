@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { FC } from "react";
 import { useRouter } from "next/navigation";
 
 interface BackButtonProps {
@@ -7,7 +7,7 @@ interface BackButtonProps {
   className?: string;
 }
 
-const BackButton: React.FC<BackButtonProps> = ({
+const BackButton: FC<BackButtonProps> = ({
   label = "Back",
   className = "inline-flex items-center cursor-pointer text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200",
 }) => {

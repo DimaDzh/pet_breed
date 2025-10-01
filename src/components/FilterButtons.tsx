@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { FilterType } from "@/types";
 
 interface FilterButtonsProps {
@@ -6,7 +6,7 @@ interface FilterButtonsProps {
   onFilterChange: (filter: FilterType) => void;
 }
 
-const FilterButtons: React.FC<FilterButtonsProps> = ({
+const FilterButtons: FC<FilterButtonsProps> = ({
   selectedFilter,
   onFilterChange,
 }) => {

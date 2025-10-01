@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { WarningIcon, RefreshIcon } from "./icons";
 
 interface ErrorStateProps {
@@ -6,7 +6,7 @@ interface ErrorStateProps {
   onRetry: () => void;
 }
 
-const ErrorState: React.FC<ErrorStateProps> = ({ error, onRetry }) => {
+const ErrorState: FC<ErrorStateProps> = ({ error, onRetry }) => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
       <div className="text-center p-8">

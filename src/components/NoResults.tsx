@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { SearchIcon } from "./icons";
 
 interface NoResultsProps {

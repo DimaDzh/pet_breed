@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -11,7 +11,7 @@ interface ExploreCardProps {
   isLoading?: boolean;
 }
 
-const ExploreCard: React.FC<ExploreCardProps> = ({
+const ExploreCard: FC<ExploreCardProps> = ({
   title,
   breedType,
   description,
